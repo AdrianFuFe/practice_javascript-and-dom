@@ -18,10 +18,9 @@ table {
 } 
 
 
-td{
-background: black;
+table tr td{
+    background: black;
 }
-tr:las
 
 button{
     margin-top: 50px;

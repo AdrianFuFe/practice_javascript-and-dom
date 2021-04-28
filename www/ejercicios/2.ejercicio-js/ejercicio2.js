@@ -1,39 +1,47 @@
 'use strict';
 
-function temporizador (num){
-    //creamos las variables para cada uno de los datos que queremos mostrar
-    let s=0;
-    let m=0;
-    let h=0;
-    let d=0;
-    console.log(`${d} dias ${h} horas ${m} inutos ${s} segundos`); //imprimimos nuestro temporizador a 0
-    
-    //creamos un intervalo al que le asignaremos un tiempo determinado para que repita nuestra funcion actualizando cada vez los valores que le indicamos
-    const intervalo = setInterval (() => {
-        s += num; //aumenta los segundos la cantidad que le indicamos segun el parametro num
-        
-        //condicion para que al llegar a 60 o mas cambie 60s por 1min, el resto de variables igual
-        if (s >= 60){
-            m++;
-            s = s-60;
-            if(m >= 60){
-                h++;
-                m = m-60;
-                if(h >= 24){
-                    d++;
-                    h = h-24;
-                }
+//variable para indica cada cuantos segundos queremos imprimir nuestro contador 
+const valorIntervalo = 5; 
+
+//declaramos las variables de nuestro temporizador a 0
+let s=0;
+let m=0;
+let h=0;
+let d=0;
+
+//creamos temporizador con valor inicial 0 y lo mostramos en consola y en nuestro doc html
+let tiempo = `${d} dias : ${h} horas : ${m} minutos : ${s} segundos`;
+console.log(tiempo);
+document.querySelector('h1').innerHTML = tiempo;
+
+
+//Resetea el contador de segundos, minutos y horas al alcanzar su maximo, configurado para que si cambiamos valorIntervalo contabilice correctamente
+function resetearTemp (){
+    if (s >= 60){
+        m++;
+        s = s-60;
+        if(m >= 60){
+            h++;
+            m = m-60;
+            if(h >= 24){
+                d++;
+                h = h-24;
             }
         }
-        const tiempo = `${d} dias ${h} horas ${m} minutos ${s} segundos`; //imprimir nuestro contador cada vez que se actualiza
-
-    }, num * 1000);  //multiplicamos por el parametro num para establecer cada cuantos segundos se actualiza nuestra funcion
-
-    document.querySelector('h1').innerHTML = tiempo;
-
-    return tiempo
+    }
 }
 
 
-//llamada a la funcion
-temporizador (5);
+function actualizarTemp (){
+    //suma a los segundos de nuestro temporizador el valor que le indicado en valorIntervalo, 
+    s += valorIntervalo;
+    resetearTemp();
+    
+    //imprime en consola y actualiza en el html el temporizador
+    console.log(`${d} dias : ${h} horas : ${m} minutos : ${s} segundos`);
+    tiempo = `${d} dias : ${h} horas : ${m} minutos : ${s} segundos`;
+    document.querySelector('h1').innerHTML = tiempo;
+}
+
+//establece el intervalor en que actualiza el temporizador en segundos segun el valor indicado en valorIntervalo
+setInterval(actualizarTemp,valorIntervalo*1000);

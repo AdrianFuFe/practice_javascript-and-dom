@@ -9,8 +9,6 @@ const addButton = document.querySelector('button.add');
 const rows = 4;
 const cols = 4;
 
-const newBoxesAmount = 1;
-
 let countCols= cols;
 
 //crea una tabla con N filas y N columnas segun las variables numRow y numCol 
@@ -51,7 +49,7 @@ return countCols;
 }
 
 //añade nuevos tds segun la cantidad que le indiquemos en la variable newBoxesAmount 
-function newBoxes(amountBoxes){
+function newBoxes(){
     //si el contador de columnas llega a su limite crea una fila nueva y un nuevo td y los añade a la tabla
     if (countCols == cols){
         const table = document.querySelector('table');
@@ -76,7 +74,7 @@ function newBoxes(amountBoxes){
 
 //llama a la funcion de crear tds
 function addBoxes(){
-    return newBoxes(newBoxesAmount);
+    return newBoxes();
 }
 
 

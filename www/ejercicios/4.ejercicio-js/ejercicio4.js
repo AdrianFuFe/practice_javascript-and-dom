@@ -17,12 +17,16 @@ const names = [
     'Arun',
     'Kenton',
 ];
-
+console.log(names);
 
 function compareArray (array){
+    //recorremos el array
     for (let i=0 ; i<array.length ; i++){
+        //recorremos el array desde el indice siguiente al actual
         for(let j=i+1; j<array.length ; j++){
-            if(array[i] == array[j]){
+            // comparamos si el valor del indice actual del array es igual al siguiente
+            if(array[i] === array[j]){
+                //si es igual quitamos ese indice del array
                 array.splice(j,1);
             }
         }
@@ -30,14 +34,3 @@ function compareArray (array){
     return names
 }
 console.log(compareArray(names));
-
-
-function removeDuplicates(array){
-    let name = array.reduce(function (a,b){
-        if (a.indexOf(b)<0) a.push(b);
-        return a;
-    },[]);
-    return name;
-    // array.reduce((acc,curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-}
-console.log(removeDuplicates(names));

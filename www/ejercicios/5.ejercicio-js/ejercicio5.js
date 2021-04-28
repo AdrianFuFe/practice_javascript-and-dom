@@ -18,9 +18,6 @@ async function getEpisodes(){
     const episodesList = [];
     //peticion a la API con la url de los episodios
     let episodes = await fetchData(urlEpisodes);
-    /*  
-    console.log(episodes);
-    */
 
     //bucle para recorrer el array que nos devuelve la peticion a la API
     episodes.results.forEach((episode) => {
@@ -55,46 +52,27 @@ async function getEpisodes(){
             }
         }
     }
-    // console.log(charUrl);
-    return charUrl;
-}
-
-async prueba = () => {
-    const cUrl = await getEpisodes();
-    console.log(cUrl);
-}
-
-console.log(prueba);
-
-
-
-async function getCharacters(){
-
-    //array donde guardaremos los personajes que nos interesen
-    const charList = [];
-
-    //bucle para peticion a la API recorriendo el array con las url de los personajes
-    for (let i=0 ; i<cUrl.length ; i++){
-        const characterUrl = await fetchData(urlChar[i]);
-        charList.push(characterUrl);
-    }
-    console.log(charList);
-}
-
-getCharacters();
-
-
-//funcion para borrar duplicados de un array
-function compareArray (array){
-    for (let i=0 ; i<array.length ; i++){
-        for(let j=i+1; j<array.length ; j++){
-            if(array[i] == array[j]){
-                array.splice(j,1);
+    
+    async function getCharacters(){
+        //array donde guardaremos los personajes que nos interesen
+        const charList = [];
+        
+        //bucle para peticion a la API recorriendo el array con las url de los personajes
+        for (let i=0 ; i<charUrl.length  ; i++){
+            let characterUrl = await fetchData(charUrl[i]);
+            charList.push(characterUrl);
+        }
+        //array donde guardaremos los nombres de los personajes  
+        const charNames = [];
+        //recorremos el array de personajes 
+        for (let g=0 ; g<charList.length ; g++){
+            if(charList[g].name){
+                //guardamos los nombres de los personajes en el array indicado
+                charNames.push(charList[g].name);
             }
         }
+        console.log(charNames);
     }
-    return array;
+    getCharacters();
 }
-
-
-
+getEpisodes();
