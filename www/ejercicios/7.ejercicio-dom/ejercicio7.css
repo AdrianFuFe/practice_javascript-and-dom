@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+table {
+    min-width: 500px;
+    min-height: 500px;
+} 
+
+
+td{
+background: black;
+}
+tr:las
+
+button{
+    margin-top: 50px;
+}
